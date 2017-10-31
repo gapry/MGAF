@@ -20,7 +20,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Set the proper paths for linux/mac
 if(UNIX)
-    # Search for Ogre in some common locations
+	# Search for Ogre in some common locations
 	if(EXISTS "/usr/local/lib/OGRE/cmake")
 		set(CMAKE_MODULE_PATH "/usr/local/lib/OGRE/cmake/;${CMAKE_MODULE_PATH}")
 		set(OGRE_SAMPLES_INCLUDEPATH "/usr/local/share/OGRE/Samples/Common/include/")
@@ -28,9 +28,9 @@ if(UNIX)
 		# Otherwise, this one
 		set(CMAKE_MODULE_PATH "/usr/lib/OGRE/cmake/;${CMAKE_MODULE_PATH}")
 		set(OGRE_SAMPLES_INCLUDEPATH "/usr/share/OGRE/Samples/Common/include/")
-    # apt-get installation
-    # In that case environment var OGRE_HOME should be set, because .deb ogre
-    # packages does not carry samples
+	# apt-get installation
+	# In that case environment var OGRE_HOME should be set, because .deb ogre
+	# packages does not carry samples
 	elseif(EXISTS "/usr/share/OGRE/cmake/modules")
 		set(CMAKE_MODULE_PATH "/usr/share/OGRE/cmake/modules/;${CMAKE_MODULE_PATH}")
 		set(OGRE_SAMPLES_INCLUDEPATH "$ENV{OGRE_HOME}/Samples/Common/include/")
