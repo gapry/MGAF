@@ -1,18 +1,11 @@
 # M-GA Framework
 
-## Instructions
+## Build and Run
 
 >  Check the [building OGRE from source](#building-ogre-from-source) section if anything fails here.
 
-First, clone the repo
-
 ```bash
 git clone https://github.com/gapry/mgaf
-```
-
-Then to run, use [CMake](https://cmake.org/):
-
-```bash
 cd mgaf
 git checkout master
 cd src 
