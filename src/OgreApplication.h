@@ -22,7 +22,7 @@ http://www.ogre3d.org/wiki/
 
 //---------------------------------------------------------------------------
 
-namespace magf
+namespace mgaf
 {
 
 class OgreApplication : public BaseApplication

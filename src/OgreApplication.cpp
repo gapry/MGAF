@@ -1,6 +1,6 @@
 #include "OgreApplication.h"
 
-void magf::OgreApplication::createScene(void)
+void mgaf::OgreApplication::createScene(void)
 {
     mSceneMgr->setAmbientLight(Ogre::ColourValue(0.5, 0.5, 0.5));
 
@@ -15,13 +15,13 @@ void magf::OgreApplication::createScene(void)
     ogreNode->attachObject(ogreEntity);
 }
 
-magf::OgreApplication::OgreApplication(void) {}
+mgaf::OgreApplication::OgreApplication(void) {}
 
-magf::OgreApplication::~OgreApplication(void) {}
+mgaf::OgreApplication::~OgreApplication(void) {}
 
 int main(int argc, char *argv[])
 {
-    magf::OgreApplication app;
+    mgaf::OgreApplication app;
 
     try {
         app.go();
