@@ -4,7 +4,7 @@
 
 >  Check the [building OGRE from source](#building-ogre-from-source) section if anything fails here.
 
-First, clone the repo (or fork it!):
+First, clone the repo
 
 ```bash
 git clone https://github.com/gapry/mgaf
@@ -14,7 +14,7 @@ Then to run, use [CMake](https://cmake.org/):
 
 ```bash
 cd mgaf
-git checkout mainline
+git checkout master
 cd src 
 ./run.sh
 ```
@@ -65,7 +65,7 @@ cmake ..
 Build OGRE:
 
 ```bash
-make -j5
+make -j4
 ```
 
 Install the library:
