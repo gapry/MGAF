@@ -17,10 +17,6 @@ http://www.ogre3d.org/wiki/
 
 #include "BaseApplication.h"
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-#include <macUtils.h>
-#endif
-
 //---------------------------------------------------------------------------
 BaseApplication::BaseApplication(void)
     : mRoot(0),
@@ -39,11 +35,7 @@ BaseApplication::BaseApplication(void)
       mKeyboard(0),
       mOverlaySystem(0)
 {
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-    m_ResourcePath = Ogre::macBundlePath() + "/Contents/Resources/";
-#else
     m_ResourcePath = "";
-#endif
 }
 
 //---------------------------------------------------------------------------
@@ -185,14 +177,6 @@ void BaseApplication::setupResources(void)
         for (i = settings->begin(); i != settings->end(); ++i) {
             typeName = i->first;
             archName = i->second;
-
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-            // OS X does not set the working directory relative to the app.
-            // In order to make things portable on OS X we need to provide
-            // the loading with it's own bundle path location.
-            if (!Ogre::StringUtil::startsWith(archName, "/", false)) // only adjust relative directories
-                archName = Ogre::String(Ogre::macBundlePath() + "/" + archName);
-#endif
 
             Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
                 archName, typeName, secName);
