@@ -1,22 +1,11 @@
 # M-GA Framework
 
-<<<<<<< HEAD
 ## Build and Run
-=======
-## Build and Run 
->>>>>>> v1.1
-
 >  Check the [building OGRE from source](#building-ogre-from-source) section if anything fails here.
 
 ```bash
 git clone https://github.com/gapry/mgaf
-<<<<<<< HEAD
-cd mgaf
-git checkout master
-cd src 
-=======
 cd mgaf/src
->>>>>>> v1.1
 ./run.sh
 ```
 
