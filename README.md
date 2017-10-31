@@ -17,6 +17,7 @@ cd mgaf
 git checkout mainline
 cd src 
 ./run.sh
+```
 
 ## Building OGRE from Source
 
