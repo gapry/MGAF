@@ -3,6 +3,7 @@
 EXEC=Ogre3D
 BUILD_DIR=build
 BIN_DIR=bin
+LOG_FILE=Ogre.log
 
 astyle \
 	--style=kr \
@@ -27,3 +28,6 @@ cmake ..
 make -j4
 cd ../$BIN_DIR/
 ./$EXEC
+
+clear
+cat $LOG_FILE | grep dbg
