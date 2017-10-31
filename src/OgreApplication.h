@@ -1,6 +1,6 @@
 /*
 -----------------------------------------------------------------------------
-Filename:    TutorialApplication.h
+Filename:    OgreApplication.h
 -----------------------------------------------------------------------------
 
 This source file is part of the
@@ -15,18 +15,18 @@ http://www.ogre3d.org/wiki/
 -----------------------------------------------------------------------------
 */
 
-#ifndef __TutorialApplication_h_
-#define __TutorialApplication_h_
+#ifndef __OgreApplication_h_
+#define __OgreApplication_h_
 
 #include "BaseApplication.h"
 
 //---------------------------------------------------------------------------
 
-class TutorialApplication : public BaseApplication
+class OgreApplication : public BaseApplication
 {
 public:
-    TutorialApplication(void);
-    virtual ~TutorialApplication(void);
+    OgreApplication(void);
+    virtual ~OgreApplication(void);
 
 protected:
     virtual void createScene(void);
