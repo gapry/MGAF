@@ -1,32 +1,39 @@
 # M-GA Framework
 
-## Instructions
+## Build and Run 
 
 >  Check the [building OGRE from source](#building-ogre-from-source) section if anything fails here.
 
-First, clone the repo (or fork it!):
-
 ```bash
 git clone https://github.com/gapry/mgaf
-```
-
-Then to run, use [CMake](https://cmake.org/):
-
-```bash
-cd mgaf
-git checkout mainline
-cd src 
+cd mgaf/src
 ./run.sh
 ```
 
-## Building OGRE from Source
+## Build OGRE from Source
 
-### Ubuntu (or any Debian-Based Linux distribution)
+### Manjaro (or any Arch-Based Linux distribution)
 
 Download the required dependencies:
 
 ``` bash
-sudo apt-get install libfreetype6-dev libfreeimage-dev libzzip-dev libxrandr-dev libxaw7-dev freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libcppunit-dev libboost-thread-dev libois-dev mercurial cmake g++ gdb doxygen
+sudo pacman -S \
+	libfreetype6-dev \
+	libfreeimage-dev \
+	libzzip-dev \
+	libxrandr-dev \
+	libxaw7-dev \
+	freeglut3-dev \
+	libgl1-mesa-dev \
+	libglu1-mesa-dev \
+	libcppunit-dev \
+	libboost-thread-dev \
+	libois-dev \
+	mercurial \
+	cmake \
+	g++ \
+	gdb \
+	doxygen
 ```
 
 Clone the repo and grab version 1.9:
@@ -49,7 +56,7 @@ cmake ..
 Build OGRE:
 
 ```bash
-make -j5
+make -j4
 ```
 
 Install the library:
