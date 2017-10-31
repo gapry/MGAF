@@ -22,6 +22,9 @@ http://www.ogre3d.org/wiki/
 
 //---------------------------------------------------------------------------
 
+namespace magf
+{
+
 class OgreApplication : public BaseApplication
 {
 public:
@@ -31,6 +34,8 @@ public:
 protected:
     virtual void createScene(void);
 };
+
+}
 
 //---------------------------------------------------------------------------
 
