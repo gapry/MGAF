@@ -17,33 +17,25 @@ http://www.ogre3d.org/wiki/
 
 #include "BaseApplication.h"
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-#include <macUtils.h>
-#endif
-
 //---------------------------------------------------------------------------
 BaseApplication::BaseApplication(void)
     : mRoot(0),
-    mCamera(0),
-    mSceneMgr(0),
-    mWindow(0),
-    mResourcesCfg(Ogre::StringUtil::BLANK),
-    mPluginsCfg(Ogre::StringUtil::BLANK),
-    mTrayMgr(0),
-    mCameraMan(0),
-    mDetailsPanel(0),
-    mCursorWasVisible(false),
-    mShutDown(false),
-    mInputManager(0),
-    mMouse(0),
-    mKeyboard(0),
-    mOverlaySystem(0)
+      mCamera(0),
+      mSceneMgr(0),
+      mWindow(0),
+      mResourcesCfg(Ogre::StringUtil::BLANK),
+      mPluginsCfg(Ogre::StringUtil::BLANK),
+      mTrayMgr(0),
+      mCameraMan(0),
+      mDetailsPanel(0),
+      mCursorWasVisible(false),
+      mShutDown(false),
+      mInputManager(0),
+      mMouse(0),
+      mKeyboard(0),
+      mOverlaySystem(0)
 {
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-    m_ResourcePath = Ogre::macBundlePath() + "/Contents/Resources/";
-#else
     m_ResourcePath = "";
-#endif
 }
 
 //---------------------------------------------------------------------------
@@ -65,16 +57,13 @@ bool BaseApplication::configure(void)
     // Show the configuration dialog and initialise the system.
     // You can skip this and use root.restoreConfig() to load configuration
     // settings if you were sure there are valid ones saved in ogre.cfg.
-    if(mRoot->showConfigDialog())
-    {
+    if(mRoot->showConfigDialog()) {
         // If returned true, user clicked OK so initialise.
         // Here we choose to let the system create a default rendering window by passing 'true'.
         mWindow = mRoot->initialise(true, "TutorialApplication Render Window");
 
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
@@ -181,23 +170,13 @@ void BaseApplication::setupResources(void)
     Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
 
     Ogre::String secName, typeName, archName;
-    while (seci.hasMoreElements())
-    {
+    while (seci.hasMoreElements()) {
         secName = seci.peekNextKey();
         Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
         Ogre::ConfigFile::SettingsMultiMap::iterator i;
-        for (i = settings->begin(); i != settings->end(); ++i)
-        {
+        for (i = settings->begin(); i != settings->end(); ++i) {
             typeName = i->first;
             archName = i->second;
-
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE
-            // OS X does not set the working directory relative to the app.
-            // In order to make things portable on OS X we need to provide
-            // the loading with it's own bundle path location.
-            if (!Ogre::StringUtil::startsWith(archName, "/", false)) // only adjust relative directories
-                archName = Ogre::String(Ogre::macBundlePath() + "/" + archName);
-#endif
 
             Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
                 archName, typeName, secName);
@@ -286,11 +265,9 @@ bool BaseApplication::frameRenderingQueued(const Ogre::FrameEvent& evt)
 
     mTrayMgr->frameRenderingQueued(evt);
 
-    if (!mTrayMgr->isDialogVisible())
-    {
+    if (!mTrayMgr->isDialogVisible()) {
         mCameraMan->frameRenderingQueued(evt);   // If dialog isn't up, then update the camera
-        if (mDetailsPanel->isVisible())          // If details panel is visible, then update its contents
-        {
+        if (mDetailsPanel->isVisible()) {        // If details panel is visible, then update its contents
             mDetailsPanel->setParamValue(0, Ogre::StringConverter::toString(mCamera->getDerivedPosition().x));
             mDetailsPanel->setParamValue(1, Ogre::StringConverter::toString(mCamera->getDerivedPosition().y));
             mDetailsPanel->setParamValue(2, Ogre::StringConverter::toString(mCamera->getDerivedPosition().z));
@@ -308,89 +285,71 @@ bool BaseApplication::keyPressed( const OIS::KeyEvent &arg )
 {
     if (mTrayMgr->isDialogVisible()) return true;   // don't process any more keys if dialog is up
 
-    if (arg.key == OIS::KC_F)   // toggle visibility of advanced frame stats
-    {
+    if (arg.key == OIS::KC_F) { // toggle visibility of advanced frame stats
         mTrayMgr->toggleAdvancedFrameStats();
-    }
-    else if (arg.key == OIS::KC_G)   // toggle visibility of even rarer debugging details
-    {
-        if (mDetailsPanel->getTrayLocation() == OgreBites::TL_NONE)
-        {
+    } else if (arg.key == OIS::KC_G) { // toggle visibility of even rarer debugging details
+        if (mDetailsPanel->getTrayLocation() == OgreBites::TL_NONE) {
             mTrayMgr->moveWidgetToTray(mDetailsPanel, OgreBites::TL_TOPRIGHT, 0);
             mDetailsPanel->show();
-        }
-        else
-        {
+        } else {
             mTrayMgr->removeWidgetFromTray(mDetailsPanel);
             mDetailsPanel->hide();
         }
-    }
-    else if (arg.key == OIS::KC_T)   // cycle polygon rendering mode
-    {
+    } else if (arg.key == OIS::KC_T) { // cycle polygon rendering mode
         Ogre::String newVal;
         Ogre::TextureFilterOptions tfo;
         unsigned int aniso;
 
-        switch (mDetailsPanel->getParamValue(9).asUTF8()[0])
-        {
-        case 'B':
-            newVal = "Trilinear";
-            tfo = Ogre::TFO_TRILINEAR;
-            aniso = 1;
-            break;
-        case 'T':
-            newVal = "Anisotropic";
-            tfo = Ogre::TFO_ANISOTROPIC;
-            aniso = 8;
-            break;
-        case 'A':
-            newVal = "None";
-            tfo = Ogre::TFO_NONE;
-            aniso = 1;
-            break;
-        default:
-            newVal = "Bilinear";
-            tfo = Ogre::TFO_BILINEAR;
-            aniso = 1;
+        switch (mDetailsPanel->getParamValue(9).asUTF8()[0]) {
+            case 'B':
+                newVal = "Trilinear";
+                tfo = Ogre::TFO_TRILINEAR;
+                aniso = 1;
+                break;
+            case 'T':
+                newVal = "Anisotropic";
+                tfo = Ogre::TFO_ANISOTROPIC;
+                aniso = 8;
+                break;
+            case 'A':
+                newVal = "None";
+                tfo = Ogre::TFO_NONE;
+                aniso = 1;
+                break;
+            default:
+                newVal = "Bilinear";
+                tfo = Ogre::TFO_BILINEAR;
+                aniso = 1;
         }
 
         Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(tfo);
         Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(aniso);
         mDetailsPanel->setParamValue(9, newVal);
-    }
-    else if (arg.key == OIS::KC_R)   // cycle polygon rendering mode
-    {
+    } else if (arg.key == OIS::KC_R) { // cycle polygon rendering mode
         Ogre::String newVal;
         Ogre::PolygonMode pm;
 
-        switch (mCamera->getPolygonMode())
-        {
-        case Ogre::PM_SOLID:
-            newVal = "Wireframe";
-            pm = Ogre::PM_WIREFRAME;
-            break;
-        case Ogre::PM_WIREFRAME:
-            newVal = "Points";
-            pm = Ogre::PM_POINTS;
-            break;
-        default:
-            newVal = "Solid";
-            pm = Ogre::PM_SOLID;
+        switch (mCamera->getPolygonMode()) {
+            case Ogre::PM_SOLID:
+                newVal = "Wireframe";
+                pm = Ogre::PM_WIREFRAME;
+                break;
+            case Ogre::PM_WIREFRAME:
+                newVal = "Points";
+                pm = Ogre::PM_POINTS;
+                break;
+            default:
+                newVal = "Solid";
+                pm = Ogre::PM_SOLID;
         }
 
         mCamera->setPolygonMode(pm);
         mDetailsPanel->setParamValue(10, newVal);
-    }
-    else if(arg.key == OIS::KC_F5)   // refresh all textures
-    {
+    } else if(arg.key == OIS::KC_F5) { // refresh all textures
         Ogre::TextureManager::getSingleton().reloadAll();
-    }
-    else if (arg.key == OIS::KC_SYSRQ)   // take a screenshot
-    {
+    } else if (arg.key == OIS::KC_SYSRQ) { // take a screenshot
         mWindow->writeContentsToTimestampedFile("screenshot", ".jpg");
-    }
-    else if (arg.key == OIS::KC_ESCAPE)
-    {
+    } else if (arg.key == OIS::KC_ESCAPE) {
         mShutDown = true;
     }
 
@@ -441,10 +400,8 @@ void BaseApplication::windowResized(Ogre::RenderWindow* rw)
 void BaseApplication::windowClosed(Ogre::RenderWindow* rw)
 {
     // Only close for window that created OIS (the main window in these demos)
-    if(rw == mWindow)
-    {
-        if(mInputManager)
-        {
+    if(rw == mWindow) {
+        if(mInputManager) {
             mInputManager->destroyInputObject(mMouse);
             mInputManager->destroyInputObject(mKeyboard);
 
