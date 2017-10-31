@@ -21,12 +21,6 @@ cd src
 
 ## Building OGRE from Source
 
-#### Note: If you're using the ecc computers at the University of Nevada, Reno, the following steps are not required. The library has already been built from source and installed. However, if you are using NoMachine the code will compile but to run you must use the command below:
-> /usr/NX/scripts/vgl/vglrun \<your project's .bin path here\>
-
-Ogre 3D must be installed. If it isn't installed you should build it from the source with the following commands.  Mercurial is required to clone the repo.
-
-
 ### Ubuntu (or any Debian-Based Linux distribution)
 
 Download the required dependencies:
