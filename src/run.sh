@@ -15,6 +15,11 @@ then
 	rm -rf ../$BUILD_DIR
 fi
 
+if [ -e ../$BIN_DIR ]
+then
+	rm -rf ../$BIN_DIR
+fi
+
 clear
 mkdir ../$BUILD_DIR
 cd ../$BUILD_DIR
