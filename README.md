@@ -21,12 +21,28 @@ cd src
 
 ## Building OGRE from Source
 
-### Ubuntu (or any Debian-Based Linux distribution)
+### Manjaro (or any Arch-Based Linux distribution)
 
 Download the required dependencies:
 
 ``` bash
-sudo apt-get install libfreetype6-dev libfreeimage-dev libzzip-dev libxrandr-dev libxaw7-dev freeglut3-dev libgl1-mesa-dev libglu1-mesa-dev libcppunit-dev libboost-thread-dev libois-dev mercurial cmake g++ gdb doxygen
+sudo pacman -S 
+	libfreetype6-dev 
+	libfreeimage-dev 
+	libzzip-dev 
+	libxrandr-dev 
+	libxaw7-dev 
+	freeglut3-dev 
+	libgl1-mesa-dev 
+	libglu1-mesa-dev 
+	libcppunit-dev 
+	libboost-thread-dev 
+	libois-dev 
+	mercurial 
+	cmake 
+	g++ 
+	gdb 
+	doxygen
 ```
 
 Clone the repo and grab version 1.9:
