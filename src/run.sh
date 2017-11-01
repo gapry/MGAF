@@ -4,6 +4,7 @@ EXEC=Ogre3D
 BUILD_DIR=build
 BIN_DIR=bin
 LOG_FILE=Ogre.log
+SRC_DIR=src
 
 astyle \
 	--style=kr \
@@ -26,8 +27,13 @@ mkdir ../$BUILD_DIR
 cd ../$BUILD_DIR
 cmake ..
 make -j4
-cd ../$BIN_DIR/
-./$EXEC
+cd ..
 
-clear
-cat $LOG_FILE | grep dbg
+if [ -e ./$BIN_DIR/$EXEC ]
+then
+	cd ./$BIN_DIR
+	cp ../$SRC_DIR/ogre.cfg ./
+	./$EXEC
+	clear
+	cat $LOG_FILE | grep dbg
+fi
