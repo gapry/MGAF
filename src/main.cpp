@@ -1,4 +1,4 @@
-#include "OgreApplication.h"
+#include "include/OgreApplication.h"
 
 int main(int argc, char *argv[])
 {

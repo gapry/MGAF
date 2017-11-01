@@ -1,4 +1,4 @@
-#include "OgreApplication.h"
+#include "include/OgreApplication.h"
 
 void mgaf::OgreApplication::createScene(void)
 {

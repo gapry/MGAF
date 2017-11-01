@@ -15,7 +15,7 @@ http://www.ogre3d.org/wiki/
 -----------------------------------------------------------------------------
 */
 
-#include "BaseApplication.h"
+#include "include/BaseApplication.h"
 
 //---------------------------------------------------------------------------
 BaseApplication::BaseApplication(void)
